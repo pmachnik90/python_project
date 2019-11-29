@@ -2,7 +2,7 @@
 # -*- coding: utf-8 -*-
 
 from extra_lotek import ustawienia, losujliczby, pobierztypy, wyniki
-from extra_lotek import czytaj_ust, zapisz_ust, czytaj_json, zapisz_json
+from extra_lotek import czytaj_ust, zapisz_ust, czytaj_str, zapisz_str
 import time
 
 
@@ -18,8 +18,8 @@ def main(args):
         typy = pobierztypy(ileliczb, maksliczba)
         iletraf = wyniki(set(lista), typy)
 
-    nazwapliku = nick + ".json" # nazwa pliku z historią losowań
-    losowania = czytaj_json(nazwapliku)
+    nazwapliku2 = nick + ".txt" # nazwa pliku z historią losowań do pliku txt
+    losowania = czytaj_str(nazwapliku2)
 
     losowania.append({
         "czas": time.time(),
@@ -27,7 +27,7 @@ def main(args):
         "wylosowane": lista,
         "trafienia": iletraf
     })
-    zapisz_json(nazwapliku, losowania)
+    zapisz_str(nazwapliku2, losowania)
 
     print("Wylosowane liczby ", lista)
     return  0
