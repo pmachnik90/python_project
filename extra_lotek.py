@@ -1,5 +1,8 @@
+#! /usr/bin/env python3
+# -*- coding: utf-8 -*-
 import random
 import os
+import json
 
 def ustawienia():
     #Funkcja pobiera nick użytkownika, ilość losowanych liczb, maksymalną losowaną wartość
@@ -12,7 +15,7 @@ def ustawienia():
     if gracz:
         print("Twoje ustawienia:\nLiczb: %s\nZ Maks: %s\nLosowań: %s" %
               (gracz[1], gracz[2], gracz[3]))
-        odp = input("Zmieniasz (t/n? ")
+        odp = input("Zmieniasz (t/n)? ")
 
     if not gracz or odp.lower() == "t":
         while True:
@@ -87,16 +90,40 @@ def zapisz_ust(nazwapliku, gracz):
     plik.write(";".join(gracz))
     plik.close()
 
-def czytaj_json(nazwapliku):
+def czytaj_json(nazwapliku2):
     """Funkcja odczytuje dane w formacie json z pliku"""
     dane = []
-    if os.path.isfile(nazwapliku):
-        with open(nazwapliku, "r") as plik:
+    if os.path.isfile(nazwapliku2):
+        with open(nazwapliku2, "r") as plik:
             dane = json.load(plik)
     return dane
 
-def zapisz_json(nazwapliku, dane):
+def zapisz_json(nazwapliku2, dane):
     """Funkcja zapisuje dane w formacie json do pliku"""
-    with open(nazwapliku, "w") as plik:
+    with open(nazwapliku2, "w") as plik:
         json.dump(dane, plik)
+
+def czytaj_str(nazwapliku2):
+    dane = [{}]
+    if os.path.isfile(nazwapliku2):
+        with open(nazwapliku2, "r") as plik:
+            linia = plik.readline()
+            print(linia)
+            linia = linia.split(";")
+            print(linia)
+            for i in linia:
+                linia[i] = i.split(":")
+            print(linia)
+            plik.close()
+    return dane
+
+def zapisz_str(nazwapliku2, dane):
+    """Funkcja zapisuje dane w formacie txt do pliku"""
+    with open(nazwapliku2, "w") as plik:
+        for slownik in dane:
+            #slownik = dict(slownik)
+            linia = [k + ":" + str(w) for k, w in slownik.items()]
+            linia = ";".join(linia)
+            plik.write(linia+"\n")
+    print("Zapisano")
 
