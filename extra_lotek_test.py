@@ -13,20 +13,21 @@ def main(args):
     #Losujemy liczby
     lista = losujliczby(ileliczb,maksliczba)
 
-    #pobieramy typy użytkownika i sprawdzamy, ile liczb trafił
-    for i in range(ilelos):
-        typy = pobierztypy(ileliczb, maksliczba)
-        iletraf = wyniki(set(lista), typy)
-
+    #otwieramy plik i odczytujemy wyniki poprzednich losowań
     nazwapliku2 = nick + ".txt" # nazwa pliku z historią losowań do pliku txt
     losowania = czytaj_str(nazwapliku2)
 
-    losowania.append({
-        "czas": time.time(),
-        "dane": (ileliczb, maksliczba),
-        "wylosowane": lista,
-        "trafienia": iletraf
+    # pobieramy typy użytkownika i sprawdzamy, ile liczb trafił a następnie dopisujemy do listy odczytanych wyników
+    for i in range(ilelos):
+        typy = pobierztypy(ileliczb, maksliczba)
+        iletraf = wyniki(set(lista), typy)
+        losowania.append({
+            "czas": time.time(),
+            "dane": (ileliczb, maksliczba),
+            "wylosowane": lista,
+            "trafienia": iletraf
     })
+
     zapisz_str(nazwapliku2, losowania)
 
     print("Wylosowane liczby ", lista)
