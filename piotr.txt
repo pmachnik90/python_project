@@ -1,0 +1,3 @@
+czas:1575318260.2170248;dane:(3, 10);wylosowane:[4, 7, 1];trafienia:4
+czas:1575321865.0235333;dane:(3, 10);wylosowane:[8, 10, 3];trafienia:1
+czas:1575321901.852736;dane:(3, 10);wylosowane:[8, 10, 3];trafienia:0
