@@ -12,6 +12,7 @@ def main(args):
 
     #Losujemy liczby
     lista = losujliczby(ileliczb,maksliczba)
+    print(lista)
 
     #otwieramy plik i odczytujemy wyniki poprzednich losowań
     nazwapliku2 = nick + ".txt" # nazwa pliku z historią losowań do pliku txt
@@ -20,7 +21,8 @@ def main(args):
     # pobieramy typy użytkownika i sprawdzamy, ile liczb trafił a następnie dopisujemy do listy odczytanych wyników
     for i in range(ilelos):
         typy = pobierztypy(ileliczb, maksliczba)
-        iletraf = wyniki(set(lista), typy)
+        iletraf = 0
+        iletraf = wyniki(lista, typy)
         losowania.append({
             "czas": time.time(),
             "dane": (ileliczb, maksliczba),
