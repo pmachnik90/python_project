@@ -67,8 +67,7 @@ def wyniki(lista, typy):
     trafione = set(lista) & typy
     if trafione:
         print("\nIlość trafień: {}".format(len(trafione)))
-        trafione = ", ".join(map(str, trafione))
-        print("Trafione liczby: ", trafione)
+        print("Trafione liczby: ", ", ".join(map(str, trafione)))
     else:
         print("Brak trafień. Spróbuj jeszcze raz!")
 
@@ -114,6 +113,7 @@ def czytaj_str(nazwapliku2):
             for i in temp:
                 Slownik2 = dict((x.strip(), y.strip()) for x, y in (element.split(':') for element in i.split(';')))
                 dane.append(Slownik2)
+            print(dane)
             plik.close()
     return dane
 
